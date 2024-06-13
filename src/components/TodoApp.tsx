@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 interface Todo {
   id: string;
   text: string;
@@ -6,6 +7,8 @@ interface Todo {
 }
 
 const TodoApp = () => {
+  const { t } = useTranslation();
+
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputText, setInputText] = useState("");
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -39,7 +42,7 @@ const TodoApp = () => {
   }
   return (
     <div>
-      <h1>Todo App</h1>
+      <h1>{t("todoApp")}</h1>
       <form onClick={handleSubmit}>
         <label htmlFor="todo"></label>
         <input
@@ -48,7 +51,7 @@ const TodoApp = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         />
-        <button> Add Todo</button>
+        <button> {t("addtodo")}</button>
       </form>
       <ul>
         {todos.map((todo) => (
@@ -59,7 +62,7 @@ const TodoApp = () => {
             >
               {todo.text}
             </span>
-            <button onClick={() => handleDelete(todo.id)}>Delete</button>
+            <button onClick={() => handleDelete(todo.id)}>{t("delete")}</button>
           </li>
         ))}
       </ul>
