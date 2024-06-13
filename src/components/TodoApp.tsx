@@ -43,7 +43,7 @@ const TodoApp = () => {
   return (
     <div>
       <h1>{t("todoApp")}</h1>
-      <form onClick={handleSubmit}>
+      <form id="form-style" onClick={handleSubmit}>
         <label htmlFor="todo"></label>
         <input
           type="text"
@@ -55,7 +55,7 @@ const TodoApp = () => {
       </form>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li className="items" key={todo.id}>
             <span
               style={{ textDecoration: todo.isDone ? "line-through" : "none" }}
               onClick={() => handleToggleTodo(todo.id)}
