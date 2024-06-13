@@ -33,6 +33,10 @@ const TodoApp = () => {
     setTodos(updatedTodos);
   }
 
+  function handleDelete(id: string) {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  }
   return (
     <div>
       <h1>Todo App</h1>
@@ -55,11 +59,11 @@ const TodoApp = () => {
             >
               {todo.text}
             </span>
+            <button onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 export default TodoApp;
