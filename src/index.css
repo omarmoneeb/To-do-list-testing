@@ -16,6 +16,18 @@
   margin: auto;
   margin-top: 5vh;
 }
+#form-style {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.items {
+  display: flex;
+  align-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
 a {
   font-weight: 500;
   color: #646cff;
