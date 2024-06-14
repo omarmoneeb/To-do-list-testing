@@ -1,45 +1,16 @@
-import { FormEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
-interface Todo {
-  id: string;
-  text: string;
-  isDone: boolean;
-}
+import item from "./TodoItem";
 
 const TodoApp = () => {
-  const { t } = useTranslation();
+  const {
+    t,
+    todos,
+    inputText,
+    setInputText,
+    handleSubmit,
+    handleToggleTodo,
+    handleDelete,
+  } = item();
 
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [inputText, setInputText] = useState("");
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (inputText.trim() === "") return;
-    const newTodo: Todo = {
-      id: crypto.randomUUID(),
-      text: inputText,
-      isDone: false,
-    };
-    setTodos([...todos, newTodo]);
-    setInputText("");
-  }
-
-  function handleToggleTodo(id: string) {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          isDone: !todo.isDone,
-        };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  }
-
-  function handleDelete(id: string) {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
-  }
   return (
     <div>
       <h1>{t("todoApp")}</h1>
