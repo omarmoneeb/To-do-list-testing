@@ -1,4 +1,6 @@
-import item from "./TodoItem";
+import TodoForm from "./TodoForm";
+import TodoList from "./TodoList";
+import useTodos from "./UseTodos";
 
 const TodoApp = () => {
   const {
@@ -9,34 +11,23 @@ const TodoApp = () => {
     handleSubmit,
     handleToggleTodo,
     handleDelete,
-  } = item();
+  } = useTodos();
 
   return (
     <div>
       <h1>{t("todoApp")}</h1>
-      <form id="form-style" onClick={handleSubmit}>
-        <label htmlFor="todo"></label>
-        <input
-          type="text"
-          id="todo"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <button> {t("addtodo")}</button>
-      </form>
-      <ul>
-        {todos.map((todo) => (
-          <li className="items" key={todo.id}>
-            <span
-              style={{ textDecoration: todo.isDone ? "line-through" : "none" }}
-              onClick={() => handleToggleTodo(todo.id)}
-            >
-              {todo.text}
-            </span>
-            <button onClick={() => handleDelete(todo.id)}>{t("delete")}</button>
-          </li>
-        ))}
-      </ul>
+      <TodoForm
+        inputText={inputText}
+        setInputText={setInputText}
+        handleSubmit={handleSubmit}
+        t={t}
+      />
+      <TodoList
+        todos={todos}
+        handleToggleTodo={handleToggleTodo}
+        handleDelete={handleDelete}
+        t={t}
+      />
     </div>
   );
 };
